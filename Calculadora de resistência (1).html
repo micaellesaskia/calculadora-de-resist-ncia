@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Calculadora de resistência</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			background-color: #f4f4f4;
+		}
+
+		h1 {
+			text-align: center;
+			margin-top: 50px;
+		}
+
+		form {
+			margin: 50px auto;
+			max-width: 500px;
+			padding: 20px;
+			background-color: #fff;
+			border-radius: 5px;
+			box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+		}
+
+		fieldset {
+			border: none;
+			margin: 0;
+			padding: 0;
+		}
+
+		label {
+			display: block;
+			margin-bottom: 10px;
+		}
+
+		select {
+			font-size: 16px;
+			padding: 10px;
+			width: 100%;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			background-color: #fff;
+		}
+
+		.result {
+			text-align: center;
+			margin-top: 50px;
+			font-size: 24px;
+			font-weight: bold;
+		}
+
+		.error {
+			color: #f00;
+			margin-top: 10px;
+		}
+	</style>
+</head>
+<body>
+	<h1>Calculadora de resistência</h1>
+	<form>
+		<fieldset>
+			<legend>Selecione as cores:</legend>
+			<label>Primeira faixa:</label>
+			<select id="faixa1">
+				<option value="0">Preto</option>
+				<option value="1">Marrom</option>
+				<option value="2">Vermelho</option>
+				<option value="3">Laranja</option>
+				<option value="4">Amarelo</option>
+				<option value="5">Verde</option>
+				<option value="6">Azul</option>
+				<option value="7">Violeta</option>
+				<option value="8">Cinza</option>
+				<option value="9">Branco</option>
+			</select>
+
+			<label>Segunda faixa:</label>
+			<select id="faixa2">
+				<option value="0">Preto</option>
+				<option value="1">Marrom</option>
+				<option value="2">Vermelho</option>
+				<option value="3">Laranja</option>
+				<option value="4">Amarelo</option>
+				<option value="5">Verde</option>
+				<option value="6">Azul</option>
+				<option value="7">Violeta</option>
+				<option value="8">Cinza</option>
+				<option value="9">Branco</option>
+			</select>
+
+			<label>Terceira faixa:</label>
+			<select id="faixa3">
+				<option value="0">Preto</option>
+				<option value="1">Marrom</option>
+                <option value="2">Vermelho</option>
+				<option value="3">Laranja</option>
+				<option value="4">Amarelo</option>
+				<option value="5">Verde</option>
+				<option value="6">Azul</option>
+				<option value="7">Violeta</option>
+				<option value="8">Cinza</option>
+				<option value="9">Branco</option>
+				<option value="10">Dourado</option>
+				<option value="11">Prateado</option>
+			</select>
+		</fieldset>
+
+        <input type="submit" value="Calcular">
+
+    </form>
+
+    <div class="result"></div>
+    <div class="error"></div>
+
+<script>
+	const form = document.querySelector('form');
+	const result = document.querySelector('.result');
+	const error = document.querySelector('.error');
+
+	form.addEventListener('submit', event => {
+		event.preventDefault();
+		const faixa1 = parseInt(document.querySelector('#faixa1').value);
+		const faixa2 = parseInt(document.querySelector('#faixa2').value);
+		const faixa3 = parseInt(document.querySelector('#faixa3').value);
+		const resistencia = (faixa1 * 10 + faixa2) * Math.pow(10, faixa3);
+
+		if (resistencia >= 1000000) {
+			result.textContent = `Resistência: ${resistencia / 1000000} MΩ`;
+		} else if (resistencia >= 1000) {
+			result.textContent = `Resistência: ${resistencia / 1000} kΩ`;
+		} else {
+			result.textContent = `Resistência: ${resistencia} Ω`;
+		}
+	});
+</script>
+</body>
+</html> 
